@@ -18,8 +18,10 @@ if !exists("g:godebug_cache_path")
   let g:godebug_cache_path = $HOME . "/.cache/" . v:progname . "/vim-godebug"
 endif
 
-" make sure cache base path exists
-call mkdir(g:godebug_cache_path, "p")
+if !isdirectory(g:godebug_cache_path)
+  " make sure cache base path exists
+  call mkdir(g:godebug_cache_path, "p")
+endif
 
 " create a reasonably unique breakpoints file path per vim instance
 let g:godebug_breakpoints_file = g:godebug_cache_path . "/". getpid() . localtime()
