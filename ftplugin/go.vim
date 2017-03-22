@@ -11,3 +11,6 @@ let b:godebug_ftplugin_loaded = 1
 " commands
 command! -nargs=0 -bang GoToggleBreakpoint call godebug#toggleBreakpoint(expand('%:p'), line('.'))
 command! -nargs=0 -bang GoDebug call godebug#debug(<bang>0, 0)
+
+" mappings
+nnoremap <silent> <Plug>(godebug-toggle-breakpoint) :<C-u>call godebug#toggleBreakpoint(expand('%:p'), line('.'))<CR>

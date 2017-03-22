@@ -31,6 +31,11 @@ Usage
 current line `:call GoDebug()` to start a debug session for the main
 package
 
+Mappings
+--------
+
+    au FileType go nmap <buffer> <leader>bp <Plug>(godebug-toggle-breakpoint)
+
 Copyright
 ---------
 
