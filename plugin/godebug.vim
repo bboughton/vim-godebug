@@ -2,11 +2,6 @@
 " Maintainer:    Brian Boughton <https://github.com/bboughton>
 " Version:       0.1
 
-if !has("nvim")
-  echom "vim-godebug: vim is not yet supported, try it with neovim"
-  finish
-endif
-
 if exists("g:godebug_loaded_install")
   finish
 endif
@@ -64,7 +59,7 @@ endfunction
 
 function! godebug#debug(bang, ...) abort
   call godebug#writeBreakpointsFile()
-  return go#term#new(a:bang, ["dlv", "debug", "--init=" . g:godebug_breakpoints_file])
+  exe "!dlv debug --init=" . g:godebug_breakpoints_file
 endfunction
 
 command! -nargs=* -bang GoToggleBreakpoint call godebug#toggleBreakpoint(expand('%:p'), line('.'), <f-args>)
