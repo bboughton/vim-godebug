@@ -1,5 +1,5 @@
 " vim-godebug.vim - Go debugging for Vim
-" Maintainer:    Luca Guidi <https://lucaguidi.com>
+" Maintainer:    Brian Boughton <https://github.com/bboughton>
 " Version:       0.1
 
 if !has("nvim")
