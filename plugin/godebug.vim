@@ -63,6 +63,3 @@ function! godebug#debug(bang, ...) abort
   call godebug#writeBreakpointsFile()
   exe "!dlv debug --init=" . g:godebug_breakpoints_file
 endfunction
-
-command! -nargs=* -bang GoToggleBreakpoint call godebug#toggleBreakpoint(expand('%:p'), line('.'), <f-args>)
-command! -nargs=* -bang GoDebug call godebug#debug(<bang>0, 0, <f-args>)
