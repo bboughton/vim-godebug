@@ -2,10 +2,10 @@
 " Maintainer:    Brian Boughton <https://github.com/bboughton>
 " Version:       0.1
 
-if exists("g:godebug_loaded_install")
+if exists("b:godebug_loaded")
   finish
 endif
-let g:godebug_loaded_install = 1
+let b:godebug_loaded = 1
 
 " Set a global list of breakpoints, if not already exist
 if !exists("g:godebug_breakpoints")
