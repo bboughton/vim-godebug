@@ -12,21 +12,7 @@ if !exists("g:godebug_breakpoints")
   let g:godebug_breakpoints = []
 endif
 
-" make cache base path overridable
-if !exists("g:godebug_cache_path")
-  " this will probably suck for people using windows ...
-  let g:godebug_cache_path = $HOME . "/.cache/" . v:progname . "/vim-godebug"
-endif
-
-if !isdirectory(g:godebug_cache_path)
-  " make sure cache base path exists
-  call mkdir(g:godebug_cache_path, "p")
-endif
-
-" create a reasonably unique breakpoints file path per vim instance
-let g:godebug_breakpoints_file = g:godebug_cache_path . "/". getpid() . localtime()
-
-autocmd VimLeave * call godebug#deleteBreakpointsFile()<cr>
+let g:godebug_breakpoints_file = tempname()
 
 " Private functions {{{1
 function! godebug#toggleBreakpoint(file, line, ...) abort
@@ -51,12 +37,6 @@ endfunction
 
 function! godebug#writeBreakpointsFile(...) abort
   call writefile(g:godebug_breakpoints + ["continue"], g:godebug_breakpoints_file)
-endfunction
-
-function! godebug#deleteBreakpointsFile(...) abort
-  if filereadable(g:godebug_breakpoints_file)
-    call delete(g:godebug_breakpoints_file)
-  endif
 endfunction
 
 function! godebug#debug(bang, ...) abort
